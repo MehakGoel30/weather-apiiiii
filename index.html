@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
+    <script src="https://use.fontawesome.com/389802374e.js"></script>
+    <title>WeatherApp</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/img/icon.png" width="30" height="30" alt="">
+                <span> WEATHER-API</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">About</a>
+                    </li>
+                </ul>
+                <form id="meteo-form" class="form-inline my-2 my-lg-0">
+                    <div id="search-loading" class="loading">
+                        <div></div>
+                    </div>
+                    <input name="meteo-city" class="form-control mr-sm-2" placeholder="City" type="text">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div class="container">
+        <h2 id="meteo-title">
+            <span>
+                Weather in <a href=" " class="text-muted meteo-city" target="_blank">London</a>
+            </span>
+        </h2>
+        <section class="section-meteo row">
+            <div id="meteo-day-1" class="meteo-day col-sm">
+                <h3>
+                    <span class="name">Day 1</span>
+                    <span class="text-muted date">--/--</span>
+                    <button class="btn btn-outline-warning btn-sm add-favorite" data-city=" ">FAVOURITE</button>
+                </h3>
+                <div class="meteo-block row meteo-temperature-container">
+                    <div class="meteo-temperature">
+                        <i class="wi wi-night-sleet"></i>
+                        <span class="data">--°C</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col meteo-block meteo-humidity">
+                        <div class="meteo-block-title">
+                            <i class="fa fa-tint" aria-hidden="true"></i> Humidity
+                        </div>
+                        <div class="meteo-block-data">--%</div>
+                    </div>
+                    <div class="col meteo-block meteo-wind">
+                        <div class="meteo-block-title">
+                            <i class="fa fa-flag" aria-hidden="true"></i> Wind
+                        </div>
+                        <div class="meteo-block-data">-- km/h</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col meteo-block meteo-sunrise">
+                        <div class="meteo-block-title">
+                            <i class="fa fa-sun-o" aria-hidden="true"></i> Sunrise
+                        </div>
+                        <div class="meteo-block-data">--:--</div>
+                    </div>
+                    <div class="col meteo-block meteo-sunset">
+                        <div class="meteo-block-title">                      
+                            <i class="fa fa-sun-o" aria-hidden="true"></i> Sunset
+                        </div>
+                        <div class="meteo-block-data">--:--</div>
+                    </div>
+                </div>
+            </div>
+            <div id="meteo-day-2" class="meteo-day col-sm">
+                <h3>
+                    <span class="name">Day 2</span>
+                    <span class="text-muted date">--/--</span>
+                    <button class="btn btn-outline-warning btn-sm add-favorite" data-city=" ">FAVOURITE</button>
+                </h3>
+                <div class="meteo-block row meteo-temperature-container">
+                    <div class="meteo-temperature">
+                        <i class="wi wi-night-sleet"></i>
+                        <span class="data">--°C</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col meteo-block meteo-humidity">
+                        <div class="meteo-block-title">
+                            <i class="fa fa-tint" aria-hidden="true"></i> Humidity
+                        </div>
+                        <div class="meteo-block-data">--%</div>
+                    </div>
+                    <div class="col meteo-block meteo-wind">
+                        <div class="meteo-block-title">
+                            <i class="fa fa-flag" aria-hidden="true"></i> Wind
+                        </div>
+                        <div class="meteo-block-data">-- km/h</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col meteo-block meteo-sunrise">
+                        <div class="meteo-block-title">
+                            <i class="fa fa-sun-o" aria-hidden="true"></i> Sunrise
+                        </div>
+                        <div class="meteo-block-data">--:--</div>
+                    </div>
+                    <div class="col meteo-block meteo-sunset">
+                        <div class="meteo-block-title">                      
+                            <i class="fa fa-sun-o" aria-hidden="true"></i> Sunset
+                        </div>
+                        <div class="meteo-block-data">--:--</div>
+                    </div>
+                </div>
+        </section>
+        <div class="favorites mt-5">
+            <h3>Your Favorite Cities</h3>
+            <ul id="favorites-list" class="list-unstyled"></ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"></script>
+    <script src="assets/js/utility.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+    const favorites = [];
+
+    // Function to add a city to favorites
+    function addFavorite(city) {
+        if (!favorites.includes(city) && city.trim() !== '') {
+            favorites.push(city);
+            updateFavoritesList();
+        }
+    }
+
+    // Function to update the favorites list in the UI
+    function updateFavoritesList() {
+        const favoritesList = document.getElementById('favorites-list');
+        favoritesList.innerHTML = '';
+        favorites.forEach(city => {
+            const listItem = document.createElement('li');
+            listItem.textContent = city;
+            favoritesList.appendChild(listItem);
+        });
+    }
+
+    // Function to update the city details dynamically after a search
+    function updateCity(city) {
+        // Update the city name in the title
+        const cityLink = document.querySelector('#meteo-title .meteo-city');
+        cityLink.textContent = city;
+        cityLink.href = `https://www.google.com/maps/search/${city}`;
+
+        // Update the data-city attribute for all the FAVOURITE buttons
+        document.querySelectorAll('.add-favorite').forEach(button => {
+            button.setAttribute('data-city', city);
+        });
+    }
+
+    // Adding event listeners to favorite buttons
+    document.querySelectorAll('.add-favorite').forEach(button => {
+        button.addEventListener('click', function() {
+            const city = this.getAttribute('data-city');
+            addFavorite(city);
+        });
+    });
+
+    // Handle the form submission for searching a city
+    document.getElementById('meteo-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Get the city entered by the user
+        const cityInput = document.querySelector('input[name="meteo-city"]');
+        const city = cityInput.value.trim();
+
+        if (city) {
+            // Assume getMeteoByCity fetches weather data for the city
+            getMeteoByCity(city, function(data, error) {
+                if (!error) {
+                    displayMeteo(data); // You would have this function to display weather data
+                } else {
+                    alert(`Weather data for ${city} not found!`);
+                }
+            });
+
+            // Update the city in the UI and the data-city attribute
+            updateCity(city);
+        }
+    });
+    </script>
+</body>
+
+</html>

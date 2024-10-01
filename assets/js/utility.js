@@ -1,0 +1,50 @@
+/*
+ * Pad a string with characters
+ */
+function pad(n, p, c = '0') {
+    // Default padding character is '0' if not provided
+    return (c.repeat(p) + n).slice(-p.length);
+}
+
+/*
+ * Convert Kelvin to Celsius
+ */
+function toCelsius(kelvin) {
+    // Convert Kelvin to Celsius
+    return Math.round(kelvin - 273.15);
+}
+
+/**
+ * Converts an HSL color value to RGB.
+ * @param   {number}  h       The hue (0-1)
+ * @param   {number}  s       The saturation (0-1)
+ * @param   {number}  l       The lightness (0-1)
+ * @return  {Array}           The RGB representation as an array [r, g, b]
+ */
+function hslToRgb(h, s, l) {
+    let r, g, b;
+
+    if (s === 0) {
+        // Achromatic case (grayscale)
+        r = g = b = Math.round(l * 255);
+    } else {
+        const hue2rgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        };
+
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+
+        r = hue2rgb(p, q, h + 1 / 3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1 / 3);
+    }
+
+    // Return RGB values scaled to 0-255
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
